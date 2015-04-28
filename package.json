@@ -1,10 +1,14 @@
 {
-  "name": "browserify-cdn",
+  "name": "browserify-cdnjs",
   "version": "0.1.0",
   "description": "Browserify transform to require libraries from jsDelivr.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
+  },
+  "repository" : { 
+    "type" : "git", 
+    "url" : "https://github.com/dsdenes/browserify-cdnjs.git"
   },
   "keywords": [
     "browserify-transform",

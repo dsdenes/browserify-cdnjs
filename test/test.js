@@ -3,6 +3,8 @@ var cdnTransform = require('../index.js');
 var browserify = require('browserify');
 var extend = require('util')._extend;
 var fs = require('fs');
+var path = require('path');
+var jsdom = require('jsdom');
 
 describe('browserify-cdn', function(){
   
@@ -42,11 +44,22 @@ describe('browserify-cdn', function(){
   });
   
   it('should provide a valid bundle', function() {
-    var stats1 = fs.lstatSync('.cdncache/jquery/main.js'); 
-    var stats2 = fs.lstatSync('.cdncache/bootstrap/main.js'); 
-    var libSize = stats1.size + stats2.size;
-    
-    assert(bundleLength - 993 === libSize);
+
+    jsdom.env({
+      html: "<html><body></body></html>",
+      scripts: [
+        path.join(__dirname, '../.cdncache/jquery/main.js'),
+        path.join(__dirname, '../.cdncache/bootstrap/main.js')
+      ],
+      done: function (errors, window) {
+        var $ = window.$;
+        
+        $('body').append("<div class='testing'>YOLO</div>");
+        assert($(".testing").text() === 'YOLO');
+        assert(typeof $().modal === 'function');
+      }
+    });
+
   });  
   
 });

@@ -1,6 +1,6 @@
 {
   "name": "browserify-cdnjs",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Browserify transform to require libraries from jsDelivr.",
   "main": "index.js",
   "scripts": {

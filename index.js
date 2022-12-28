@@ -20,7 +20,7 @@ module.exports = transformTools.makeRequireTransform("requireTransform", options
     }
       
     var cdnLib = reqLib.slice(0, -4);
-    var cdnUrl = format('https://cdn.jsdelivr.net/%s/latest/mainfile', cdnLib);
+    var cdnUrl = format('https://cdn.jsdelivr.net/%s', cdnLib);
     var localPath = path.join(process.cwd(), '.cdncache', cdnLib);
     var localFile = path.join(localPath, 'main.js');
   
